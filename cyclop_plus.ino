@@ -154,7 +154,7 @@ void loop()
       break;
 
     case LONG_CLICK:      // graphical band scanner
-      currentChannel = bestChannelMatch(graphicScanner(getFrequency(currentChannel)));
+      bestChannelMatch(graphicScanner(getFrequency(currentChannel)));
       drawChannelScreen(currentChannel, 0);
       displayUpdateTimer = millis() +  RSSI_STABILITY_DELAY_MS;
       break;
@@ -245,9 +245,9 @@ uint8_t getClickType(uint8_t buttonPin) {
 
   if (timer < 40)                  // 120 * 5 ms = 0.6s
     click_type = SINGLE_CLICK;
-  if (timer >= 40 && timer < 120)  // 300 * 5 ms = 1.5s
+  if (timer >= 40 && timer < 80)  // 300 * 5 ms = 1.5s
     click_type = LONG_CLICK;
-  if (timer >= 120)
+  if (timer >= 80)
     click_type = LONG_LONG_CLICK;
 
   // Check if there is a second click
